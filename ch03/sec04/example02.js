@@ -1,0 +1,1 @@
+let square = new Function('x', 'return x * x');

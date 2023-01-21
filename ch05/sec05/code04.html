@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas로 이미지 파일 읽어 들이기</title>
+	<style>
+		canvas {
+			border: 2px solid gray;
+		}
+	</style>
+	<script>
+		window.onload = function() {
+			// get object of canvas
+			let canvas = document.getElementById('mycanvas');
+			// get rendering context of canvas
+			let ctx = canvas.getContext('2d');
+			// create image object
+			let image = new Image();
+			// after read image, draw into canvas
+			image.onload = function() {
+				ctx.drawImage(image, 0, 0);
+			};
+			// set source of image to URL
+			image.src = './images/dog.jpg';
+		};
+	</script>
+</head>
+<body>
+	<canvas id="mycanvas" width="640" height="400"></canvas>
+</body>
+</html>

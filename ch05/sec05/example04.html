@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ch05 / sec05 / example04</title>
+	<script>
+		window.onload = function() {
+			// canvas 요소 가져오기
+			let canvas = document.getElementById('mycanvas');
+			
+			// canvas 렌더링 컨텍스트 가져오기
+			let ctx = canvas.getContext('2d');
+			
+			ctx.beginPath();
+			ctx.moveTo(10, 10);
+			ctx.lineTo(200, 10);
+			ctx.arc(200, 60, 50, -Math.PI / 2, 0, false);
+			ctx.lineTo(250, 160);
+			ctx.stroke();
+		}
+	</script>
+</head>
+<body>
+	<canvas id="mycanvas" width="640" height="400"></canvas>
+</body>
+</html>

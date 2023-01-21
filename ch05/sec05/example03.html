@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ch05 / sec05 / example03</title>
+	<script>
+		window.onload = function() {
+			// canvas 요소 가져오기
+			let canvas = document.getElementById('mycanvas');
+			
+			// canvas 렌더링 컨텍스트 가져오기
+			let ctx = canvas.getContext('2d');
+			
+			ctx.beginPath();
+			// 시계 방향
+			ctx.arc(100, 100, 80, 30 * Math.PI / 180, 120 * Math.PI / 180, false);
+			ctx.stroke();
+			// 시계 반대 방향
+			ctx.beginPath();
+			ctx.arc(100, 100, 80, 30 * Math.PI / 180, 120 * Math.PI / 180, true);
+			ctx.stroke();
+		}
+	</script>
+</head>
+<body>
+	<canvas id="mycanvas" width="640" height="400"></canvas>
+</body>
+</html>

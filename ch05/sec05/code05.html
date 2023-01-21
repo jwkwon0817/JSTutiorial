@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Value of pixel's RGB</title>
+	<style>
+		canvas {
+			border: 2px solid gray;
+		}
+	</style>
+	<script>
+		window.onload = function() {
+			let canvas = document.getElementById('mycanvas');
+			let ctx = canvas.getContext('2d');
+			// create image objecet
+			let image = new Image();
+			// after read image
+			image.onload = function() {
+				// draw read image to canvas
+				ctx.drawImage(image, 0, 0);
+				// get ImageData object
+				// width and height of canvas is saved in canvas.width and canvas.height
+				let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+				// add method that return rgba value
+				imageData.getRGBA = function(m, n, i) {
+					return this.data[this.width * 4 * n + 4 * m + i];
+				};
+				let rgb = document.getElementById('rgb');
+				// if clicked canvas tag
+				canvas.onclick = function(event) {  // event is event object
+					let x = event.offsetX;  // clicked position x by mouse
+					let y = event.offsetY;  // clicked position y by mouse
+					rgb.innerHTML = 'R: ' + to3digit(imageData.getRGBA(x, y, 0))
+						+ ' G: ' + to3digit(imageData.getRGBA(x, y, 1))
+						+ ' B: ' + to3digit(imageData.getRGBA(x, y, 2));
+				};
+			};
+			image.src = './images/dog.jpg';
+		};
+		
+		/** function that return number to 3 strings */
+		function to3digit(n) {
+			return ('000' + n).slice(-3);
+		}
+	</script>
+</head>
+<body>
+	<canvas id="mycanvas" width="640" height="400"></canvas>
+	<div>
+		<output id="rgb"></output>
+	</div>
+</body>
+</html>
